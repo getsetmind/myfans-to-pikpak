@@ -1,0 +1,4 @@
+interface:
+  display_name: "MyFans to PikPak Operator"
+  short_description: "Plan and run safe MyFans to PikPak synchronization"
+  default_prompt: "Use $myfans-to-pikpak-operator to plan or operate a safe MyFans to PikPak synchronization."

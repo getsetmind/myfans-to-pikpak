@@ -1,0 +1,12 @@
+.*
+docs/
+fixtures/
+scripts/
+tests/
+legacy/
+*.md
+!README.md
+!README.ja.md
+!LICENSE
+tsconfig*.json
+biome.json

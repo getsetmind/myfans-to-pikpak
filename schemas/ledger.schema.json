@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:myfans-to-pikpak:schema:ledger:1",
+  "title": "MyFans to PikPak durable ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "planId", "target", "updatedAt", "items", "runs"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "planId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
+    "target": { "type": "string", "pattern": "^[^:]+:" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "items": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["postId", "finalName", "status", "size", "localPath", "updatedAt"],
+        "properties": {
+          "postId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z0-9_-]+$"
+          },
+          "finalName": { "type": "string", "minLength": 1, "maxLength": 240 },
+          "status": { "enum": ["downloaded", "uploaded", "verified"] },
+          "size": { "type": "integer", "minimum": 0 },
+          "localPath": { "type": ["string", "null"] },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["planDigest", "startedAt", "completedAt", "completedItems", "status"],
+        "properties": {
+          "planDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "startedAt": { "type": "string", "format": "date-time" },
+          "completedAt": { "type": ["string", "null"] },
+          "completedItems": { "type": "integer", "minimum": 0 },
+          "status": { "enum": ["running", "completed", "failed"] },
+          "errorCode": { "type": "string" }
+        }
+      }
+    }
+  }
+}

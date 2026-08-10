@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:myfans-to-pikpak:schema:sync-plan:1",
+  "title": "MyFans to PikPak synchronization plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "planId",
+    "target",
+    "createdAt",
+    "expiresAt",
+    "remoteSnapshotDigest",
+    "stats",
+    "items",
+    "warnings",
+    "digest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "planId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
+    "target": { "type": "string", "pattern": "^[^:]+:" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "remoteSnapshotDigest": { "$ref": "#/$defs/digest" },
+    "digest": { "$ref": "#/$defs/digest" },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "posts",
+        "skip",
+        "rename",
+        "transfer",
+        "download",
+        "collisions",
+        "remoteExtras",
+        "knownTransferBytes"
+      ],
+      "properties": {
+        "posts": { "type": "integer", "minimum": 0 },
+        "skip": { "type": "integer", "minimum": 0 },
+        "rename": { "type": "integer", "minimum": 0 },
+        "transfer": { "type": "integer", "minimum": 0 },
+        "download": { "type": "integer", "minimum": 0 },
+        "collisions": { "type": "integer", "minimum": 0 },
+        "remoteExtras": { "type": "integer", "minimum": 0 },
+        "knownTransferBytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "postId",
+          "originalName",
+          "finalName",
+          "publishedAt",
+          "action",
+          "currentRemoteName",
+          "remoteSize",
+          "localPath",
+          "localSize",
+          "downloadRequired"
+        ],
+        "properties": {
+          "postId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z0-9_-]+$"
+          },
+          "originalName": { "type": "string", "minLength": 1, "maxLength": 240 },
+          "finalName": { "type": "string", "minLength": 1, "maxLength": 240 },
+          "publishedAt": { "type": ["string", "null"] },
+          "action": { "enum": ["skip", "rename", "transfer"] },
+          "currentRemoteName": { "type": ["string", "null"] },
+          "remoteSize": { "type": ["integer", "null"], "minimum": 0 },
+          "localPath": { "type": ["string", "null"] },
+          "localSize": { "type": ["integer", "null"], "minimum": 0 },
+          "downloadRequired": { "type": "boolean" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

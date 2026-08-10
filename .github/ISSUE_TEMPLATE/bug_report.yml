@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible CLI defect without private data
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include tokens, cookies, personal IDs, filenames, remote paths, or media. Report vulnerabilities through GitHub private vulnerability reporting when available, or contact the maintainer privately.
+  - type: input
+    id: version
+    attributes:
+      label: CLI version
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS and Node.js version
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction with synthetic values
+    validations:
+      required: true
+  - type: input
+    id: error-code
+    attributes:
+      label: Stable error code
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true

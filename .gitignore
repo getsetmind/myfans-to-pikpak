@@ -1,0 +1,35 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+*.part
+
+# Local runtime state and downloaded media
+.myfans-to-pikpak/
+# Legacy local plans created before the rename
+.myfans-pikpak/
+/sync-plan*.json
+/cleanup-plan*.json
+downloads/
+manifests/
+thumbnail-tests/
+upload-test-*/
+
+# Personal migration artifacts kept outside the public source set
+bin/
+vendor/
+MYFANS_PIKPAK_NOTES.md
+Transfer-MyFansToPikPak.ps1
+Organize-MyFansPikPak.ps1
+transfer.mjs
+organize.mjs
+
+# Tool-specific local files
+CLAUDE.local.md
+.codex-log/
+.DS_Store
+Thumbs.db

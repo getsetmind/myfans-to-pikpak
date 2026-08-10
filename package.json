@@ -1,0 +1,64 @@
+{
+  "name": "myfans-to-pikpak",
+  "version": "1.0.0",
+  "description": "Unofficial, safety-focused CLI for synchronizing authorized MyFans videos to PikPak through rclone.",
+  "type": "module",
+  "bin": {
+    "myfans-to-pikpak": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "README.md",
+    "README.ja.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome lint src tests scripts",
+    "format": "biome format --write src tests scripts schemas package.json package-lock.json tsconfig.json tsconfig.build.json biome.json vitest.config.ts",
+    "format:check": "biome format src tests scripts schemas package.json package-lock.json tsconfig.json tsconfig.build.json biome.json vitest.config.ts",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "smoke": "node scripts/smoke-cli.mjs",
+    "agents:sync": "node scripts/sync-agent-skills.mjs --write",
+    "agents:check": "node scripts/sync-agent-skills.mjs --check",
+    "check": "npm run agents:check && npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build && npm run smoke",
+    "prepublishOnly": "npm run check"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "keywords": [
+    "cli",
+    "myfans",
+    "pikpak",
+    "rclone",
+    "backup"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getsetmind/myfans-to-pikpak.git"
+  },
+  "bugs": {
+    "url": "https://github.com/getsetmind/myfans-to-pikpak/issues"
+  },
+  "homepage": "https://github.com/getsetmind/myfans-to-pikpak#readme",
+  "sideEffects": false,
+  "dependencies": {
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.7",
+    "@types/node": "^26.2.0",
+    "@types/ws": "^8.18.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "ajv": "^8.20.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10",
+    "ws": "^8.21.3"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MyFans to PikPak Maintainer"
+  short_description: "Develop and verify the MyFans to PikPak CLI safely"
+  default_prompt: "Use $myfans-to-pikpak-maintainer to change and verify the MyFans to PikPak CLI."

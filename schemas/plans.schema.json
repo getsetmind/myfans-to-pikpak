@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:myfans-to-pikpak:schema:plans-result:1",
+  "title": "MyFans to PikPak plans command result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["count", "plans"],
+  "properties": {
+    "count": { "type": "integer", "minimum": 0 },
+    "plans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "postsCount",
+          "creatorUsername",
+          "creatorName",
+          "url",
+          "subscriptionId",
+          "subscribedAt",
+          "activeUntil",
+          "willCancel"
+        ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string" },
+          "postsCount": {
+            "anyOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }]
+          },
+          "creatorUsername": { "type": "string", "minLength": 1 },
+          "creatorName": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "format": "uri" },
+          "subscriptionId": { "type": "string", "minLength": 1 },
+          "subscribedAt": {
+            "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }]
+          },
+          "activeUntil": {
+            "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }]
+          },
+          "willCancel": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

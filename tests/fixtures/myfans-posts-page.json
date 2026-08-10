@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "id": "fixture-post-0001",
+      "body": "Fixture title",
+      "publish_start_at": "2026-01-01T00:00:00Z",
+      "thumbnail_url": "https://example.invalid/thumbnail.jpg"
+    }
+  ],
+  "pagination": {
+    "next": null
+  }
+}
